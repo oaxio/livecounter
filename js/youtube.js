@@ -1,4 +1,4 @@
-apiKey = 'AIzaSyByTnIkQHfsGi9TN9qkkQk8XNZWT6EaueM', // Jouw Youtube Api Key om data te krijgen. (https://developers.google.com/youtube/v3/getting-started)
+apiKey = 'AIzaSyBOJ2pnGgTv1yik7USh_VKjPLoYVqmlDLI', // Your youtube api key. (https://developers.google.com/youtube/v3/getting-started)
 cache = { 'live' : 0, 'cached': 0 },
 elementToCache = 'currentCached', elementToLive = 'currentLive';
 

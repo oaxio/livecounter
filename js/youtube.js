@@ -1,4 +1,4 @@
-apiKey = 'AIzaSyApU8Kv6jgw1TsroFWRnw2npIj0-MP59_w', // Jouw Youtube Api Key om data te krijgen. (https://developers.google.com/youtube/v3/getting-started)
+apiKey = 'AIzaSyByTnIkQHfsGi9TN9qkkQk8XNZWT6EaueM', // Jouw Youtube Api Key om data te krijgen. (https://developers.google.com/youtube/v3/getting-started)
 cache = { 'live' : 0, 'cached': 0 },
 elementToCache = 'currentCached', elementToLive = 'currentLive';
 
@@ -48,4 +48,4 @@ window.onload = function() {
    YTCounter.updateLiveCounter();
 };
 
-setInterval(YTCounter.updateLiveCounter, 1900)
+setInterval(YTCounter.updateLiveCounter, 1200)

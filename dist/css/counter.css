@@ -1,3 +1,85 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #F44336;
+  text-decoration:
+}
+.index {
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+.hrt {
+  height: 25px;
+}
+.name {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.meter {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.title {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.img-circle {
+	width: 200;
+	height: 200;
+	border-radius: 50% !important;
+
+}
+
+.center-block {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+ }
+
+
+.col-centered{
+    float: none !important;
+    margin: 0 auto !important;
+}
+
+body {
+	 font-family: 'Open Sans', sans-serif !important;
+}
+.bg-youtube2 {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  height: 100%;
+  color: #fff !important;
+  background-color: #F44336 !important;
+}
+a {
+    color: #fff !important;
+}
+* {
+  border-radius: 0 !important;
+}
+.vertical-align {
+    display: flex !important;
+    align-items: center !important;
+}
+
+
+#foo {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+
+
+
 .odometer.odometer-auto-theme {
 	font-size: 100px;
 	text-align: center !important;

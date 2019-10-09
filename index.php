@@ -1,148 +1,91 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-assets/js" lang="en" dir="ltr">
+
 <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Een gratis live abonneeteller voor YouTube. Wij hebben plannen om ook andere sociale media toe te voegen! :)" />
+        <meta name="keywords" content="youtube, you, tube, abonnees, abbonnees, abbonees, youtubers, live, games, vlog, beauty, aantal, veel, live, life, snel, iedere, seconde, laden, minecraft" />
+        <meta name="author" content="SjoerdK.nl">
+        <meta name="robots" content="index, follow" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+        <link href="//fonts.googleapis.com/css?family=Roboto:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="assets/css/foundation.min.css">
+        <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
+        <link rel="stylesheet" href="assets/css/app.css">
+        <title>LiveCounter - Roy Vroon</title>
+		
+		
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    <title>LiveCount | YouTube</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link href="dist/css/ripples.min.css" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="dist/css/counter.css">
-    <meta name="description" content="Count YouTube subscribers for FREE! Every second a refresh from the counter.">
-    <meta name="keywords" content="Youtube, Youtube subscriber count, YT, Subscriber, Subscribers, Subs, SUB4SUB, LiveCount, Live Count, Livecounter, Live Counter, Live subscribers, Count live, cool">
+  ga('create', 'UA-84928611-9', 'auto');
+  ga('send', 'pageview');
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        window.cookieconsent_options = {
-            "message": "This website uses cookies to analyse our traffic.",
-            "dismiss": "OK",
-            "learnMore": "",
-            "link": null,
-            "theme": "light-floating"
-        };
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-
-
+</script>
 </head>
 <body>
-    <?php include 'inc/analytics.php'; ?>
-    <script src="js/youtube.js"></script>
-    <script src="js/counter.js"></script>
-
     <?php
-    $youtuberstart = "PewDiePie";
-    $api = false;
-
-    if (isset($_POST['channel']) && strlen(trim($_POST['channel'])) || isset($_GET['c']) && strlen(trim($_GET['c']))) {
-      if (isset($_POST['channel'])) {
-        $inputform = trim(htmlspecialchars($_POST['channel']));
-      } else {
-        $inputform = trim($_GET['c']);
-        $api = true;
-      }
-      $inputformlower = strtolower($inputform);
-
-      if ($inputformlower == 'ksi') {
-        $channel = 'KSIOlajidebt';
-      } else {
-        $channel = $inputform;
-      }
+    $youtuberstart = 'PewDiePie';
+    if (isset($_POST['channel']) && strlen(trim($_POST['channel'])) || isset($_GET['c'])){
+        if (isset($_POST['channel'])) {
+            $inputform = trim(htmlspecialchars($_POST['channel']));
+        }
+        elseif(isset($_GET['c'])){
+          $inputform = trim(htmlspecialchars($_GET['c']));
+        }
+        $channel = ucfirst(strtolower($inputform));
     } else {
-      $channel = $youtuberstart;
+        $channel = $youtuberstart;
     }
- ?>
-
-
-
-        <div class="header-panel shadow-z-2">
-            <div class="container-fluid">
-            </div>
-        </div>
-
-        <div class="container-fluid main">
-            <div class="pages col-xs-11">
-                <!-- <div class="row"> -->
-                <div class="col-xs-11">
-                    <div class="well page active" id="home">
-                        <div class="center">
-                            <em>Roy Vroon</em>
-                            <h1 class="header text"><?php echo $channel; ?></h1>
-
-                            <h1 id="currentLive" class="counter text meter odometer">[loading]</h1>
-                            <h1 id="currentLive" class="not-found">Not found</h1>
-
-                            <?php if (!$api): ?>
-                            <div class="form-group label-placeholder">
-                                <form action="" method="POST">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="channel" placeholder="E.G. MarkiplierGAME or UC_SG1fKhjJAW6TaV5wOLgjQ (Press ENTER to load)" id="i5p">
-                                        <span class="input-group-btn">
-          <a href="channel_id"><button class="btn btn-warning btn-sm" type="button">?</button></a>
-        </span>
-                                    </div>
-                                </form>
-                            </div>
-                            <?php endif ?>
-
-                            <script>
-                                username = '<?php echo $channel ?>'
-                                $("#cpa-form").submit(function(e) {
-                                    return false;
-                                });
-                            </script>
-
-
-                            <hr>
-                        </div>
-                        <div class="row">
-                            <a href="?c=<?php echo $channel; ?> " target="_blank">
-                                <button type="button" class="btn btn-primary" data-toggle="modal">OPEN IN NEW TAB</button>
-                            </a>
-                            <a href="https://twitter.com/intent/tweet?button_hashtag=livecounteu&text=I'm%20counting%20live%20youtube%20subscribers%20with%20https%3A%2F%2Flivecount.eu%20%2C%20You%20too%3F" data-related="livecounteu">
-                                <button type="button" class="btn btn-primary" data-toggle="modal">TWEET</button>
-                            </a>
-
-                            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#refs">Host</button>
-
-                            <p class="text center">&copy;
-                                <?php echo date("Y"); ?> Roy Vroon</p>
-                        </div>
-                    </div>
+?>
+        <div id="header" class="gradient"></div>
+        <main>
+            <div class="row">
+                <div class="large-12 columns">
+                    <form action="" method="POST">
+                        <input type="text" class="materialbox" id="inputbig" id="cpa-form" name="channel" placeholder="Voer een YouTube kanaalnaam in " /> </form>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
+            <div class="large-12 columns row">
+                <div class="callout materialbox"> <img alt="Channellogo" id="avatar" class="image"><img alt="Channellogo" style="visibility: hidden;" id="placeholder" src="user.png" class="image">
+            <h4 class="channelname"><?= $channel;?></h4>
+          <h1 class="counter odometer" id="odometer">N/A</h1>
+              <h3 class="counter" id="not-found" style="display: none; font-size: 100px !important;">Niets gevonden..</h3>
 
-        <div class="modal fade" id="refs" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="refsLabel">Hosts</h4>
-                    </div>
-                    <div class="modal-body">
-                      <div>
-                        <a href="https://zeit.co/">
-                          <button type="button" class="btn btn-primary" data-toggle="modal">Zeit.co </button>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                </div>
+
+              <script>
+    var count = 1;
+    function setColor(btn, color) {
+        var property = document.getElementById('header');
+        if (count == 0) {
+            property.style.backgroundColor = ""
+            count = 1;
+        }
+        else {
+            $("#header").addClass('kaas');
+            count = 0;
+        }
+    }
+</script>
+      </span> </div>
+      <div class="callout materialbox">
+      </div>
+                <div class="callout materialbox" style="width: 100%"> &copy; <?= date("Y"); ?> Roy Vroon <span class="right">Proudly hosted by <a href="https://zeit.co" rel="nofollow" target="_blank" class="medium-text-right">Zeit</a> <a id="btn" onclick="setColor('button', '#101010')" href="#">.</a></span> </div>
             </div>
-        </div>
-
+        </main>
+        <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script src="assets/js/odometer.js"></script>
+        <script src="assets/js/vendor/jquery.js" async></script>
+        <script src="assets/js/vendor/what-input.js" async></script>
+        <script src="assets/js/vendor/foundation.js" async></script>
+        <script src="assets/js/app.js" async></script>
+        <script>username = '<?php echo $channel ?>'; $("#cpa-form").submit(function (e) {return false;});</script>
+		
 </body>
+
 </html>
